@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { Pessoa } = require('./models');
+const { Usuario } = require('./models');
 
 const app = express();
 
@@ -13,10 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Rota para listar os usuários
-app.get('/pessoas', async function (req, res) {
+app.get('/usuarios', async function (req, res) {
   try {
-    const pessoas = await Pessoa.findAll();
-    res.render('index', { pessoas });
+    const usuarios = await Usuario.findAll();
+    res.render('index', { usuarios });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuários.' });
